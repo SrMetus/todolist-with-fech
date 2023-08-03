@@ -1,30 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 
-
-const Input = () => {
-    const [inputValue, setInputValue] = useState([]);
-
+const Input = ({dataInput, setDataInput}) => {
     const handleKeyDown = (event) => {
         if (event.key === "Enter" &&
             event.target.value.trim() !== "") {
-            setInputValue([...inputValue,
+            setDataInput([...dataInput,
             event.target.value.trim()]);
             event.target.value = "";
         }
     };
 
     /*const deleteTask = (index) => {
-        const filteredTask = inputValue.filter((task, i) => i !== index)
-        setInputValue(filteredTask)
+        const filteredTask = dataInput.filter((task, i) => i !== index)
+        setDataInput(filteredTask)
     } */
 
-    const deleteTask = (index) => {
-        const newList = [...inputValue]
+   /* const deleteTask = (index) => {
+        const newList = [...dataInput]
         newList.splice(index, 1)
-        setInputValue(newList);
-    }
+        setDataInput(newList);
+    }*/
 
-    console.log(inputValue);
+    console.log(dataInput);
     return (
         <>
 
@@ -36,16 +33,6 @@ const Input = () => {
                     onKeyDown={handleKeyDown}
                 //onChange={handleChange}
                 />
-
-                <ul>
-                    {inputValue.map((task, index) => (
-                        <li key={index}>{index + 1}-{task} <i class="fa-solid fa-trash" onClick={() => deleteTask(index)}></i></li>
-                    ))}
-
-                </ul>
-            </div>
-            <div className="counter">
-                <p>{inputValue.length} item left</p>
             </div>
         </>
 
@@ -53,4 +40,3 @@ const Input = () => {
 };
 
 export default Input;
-
