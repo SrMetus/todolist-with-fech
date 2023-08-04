@@ -20,8 +20,7 @@ const Input = ({dataInput, setDataInput}) => {
         newList.splice(index, 1)
         setDataInput(newList);
     }*/
-
-    console.log(dataInput);
+    
     return (
         <>
 
