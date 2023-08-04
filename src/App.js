@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
-import Input from './components/Input'
-import List from './components/List';
+import Input from './components/input'
+import List from './components/list';
 
  /* 
 ├──App

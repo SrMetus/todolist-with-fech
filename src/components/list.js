@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteTask from "./DeleteTask";
+import DeleteTask from "./deletetask";
 
 const List = ({ data, SetDataInput }) => {
     return (
