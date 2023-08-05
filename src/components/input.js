@@ -1,11 +1,12 @@
 import React from "react";
 
-const Input = ({dataInput, setDataInput}) => {
+const Input = ({dataInput, setDataInput, putData}) => {
     const handleKeyDown = (event) => {
         if (event.key === "Enter" &&
             event.target.value.trim() !== "") {
-            setDataInput([...dataInput,
-            event.target.value.trim()]);
+            const newArray = [...dataInput, {label: event.target.value.trim(), done: false}]
+            setDataInput(newArray);
+            putData(newArray);
             event.target.value = "";
         }
     };
@@ -23,13 +24,13 @@ const Input = ({dataInput, setDataInput}) => {
     
     return (
         <>
-
             <div>
                 <input
                     type="text"
                     name="task"
                     placeholder="task to be performed"
                     onKeyDown={handleKeyDown}
+                    
                 //onChange={handleChange}
                 />
             </div>

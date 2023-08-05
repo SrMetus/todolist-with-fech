@@ -7,16 +7,19 @@ import List from './components/list';
 const App = () => {
   const [dataInput, setDataInput] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, [])
+  const url = "https://playground.4geeks.com/apis/fake/todos/user/Metus";
+
+ useEffect(() => {
+   getData();
+ }, [])
 
   const getData = () => {
-    fetch("https://playground.4geeks.com/apis/fake/todos/user/Metus")
+    fetch(url)
       .then(resp => {
         return resp.json()
       })
       .then(data => {
+        console.log(data)
         setDataInput(data)
       })
       .catch(error => {
@@ -24,10 +27,10 @@ const App = () => {
       })
   }
 
-  const putData = () => {
-    fetch("https://playground.4geeks.com/apis/fake/todos/user/Metus", {
+  const putData = (newArray) => {
+    fetch(url, {
       method: "PUT",
-      body: JSON.stringify(dataInput),
+      body: JSON.stringify(newArray),
       headers: {
         "Content-Type": "application/json"
       }
@@ -42,21 +45,24 @@ const App = () => {
         console.log(error)
       })
   }
-  putData()
 
+  console.log("dataInput", dataInput);
+  
   return (
-    <div className="container">
-      <h1>Task List</h1>
-      <div className="input">
-        <Input dataInput={dataInput} setDataInput={setDataInput} />
+    <>
+      <div className="container">
+        <h1>Task List</h1>
+        <div className="input">
+          <Input dataInput={dataInput} setDataInput={setDataInput} putData={putData} />
+        </div>
+        <div className="list">
+          <List data={dataInput} SetDataInput={setDataInput} />
+        </div>
+        <div className="counter">
+          <p>{dataInput.length} </p>
+        </div>
       </div>
-      <div className="list">
-        <List data={dataInput} SetDataInput={setDataInput} />
-      </div>
-      <div className="counter">
-        <p>{dataInput.length} </p>
-      </div>
-    </div>
+    </>
   );
 };
 
