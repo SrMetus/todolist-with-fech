@@ -46,6 +46,25 @@ const App = () => {
       })
   }
 
+  const delData = (newList) => {
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(newList),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(resp => {
+        return resp.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   console.log("dataInput", dataInput);
   
   return (
@@ -56,7 +75,7 @@ const App = () => {
           <Input dataInput={dataInput} setDataInput={setDataInput} putData={putData} />
         </div>
         <div className="list">
-          <List data={dataInput} SetDataInput={setDataInput} />
+          <List data={dataInput} SetDataInput={setDataInput} delData={delData}/>
         </div>
         <div className="counter">
           <p>{dataInput.length} </p>
